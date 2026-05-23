@@ -47,6 +47,45 @@ Sources
 - source list
 ```
 
+## Daily abnormal movement memo
+
+```text
+As of: YYYY-MM-DD
+Market scope: A-shares / Hong Kong / both
+Data timing: post-close / intraday / partial
+
+Executive summary
+- Main market pattern:
+- Most researchable movers:
+- Highest-risk movers:
+- Key policy/sector linkage:
+
+Abnormal mover table
+| Market | Stock | Move/trigger | Volume/turnover signal | Verified cause | Source quality | Classification | Next trigger |
+
+Deep dive candidates
+1. Stock / ticker
+   - Abnormal trigger:
+   - Verified cause:
+   - Causal chain:
+   - Sector/peer context:
+   - Fundamental impact:
+   - Valuation/risk implication:
+   - Classification:
+   - What would confirm/falsify:
+
+Speculative / red-flag movers
+- Name:
+- Why not researchable yet:
+
+Next-session watchlist
+- Stock:
+- Trigger:
+
+Sources
+- source list
+```
+
 ## Existing holding risk memo
 
 ```text
