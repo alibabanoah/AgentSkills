@@ -1,6 +1,6 @@
 ---
 name: stock-investment-research-harness
-description: Orchestrate a public-market stock investment research and portfolio risk-monitoring workflow using authoritative public sources, causal macro/geopolitical reasoning, and the user's preference for large established companies, buy-low-sell-high discipline, and exceptional high-growth leaders. Use when the user asks for stocks worth researching or investing in, recent investable opportunities, ticker-by-ticker equity analysis, portfolio holding reviews, recurring risk checks, risk alerts, watchlists, valuation/thesis memos, or deep analysis of how policies, geopolitics, macro data, news, and market reactions affect stocks.
+description: Orchestrate a public-market stock investment research and portfolio risk-monitoring workflow using authoritative public sources, causal macro/geopolitical reasoning, daily A-share/Hong Kong abnormal-movement scans, and the user's preference for large established companies, buy-low-sell-high discipline, and exceptional high-growth leaders. Use when the user asks for stocks worth researching or investing in, recent investable opportunities, A-share or Hong Kong daily movers, sharp rises/falls, limit-up/limit-down names, unusual volume/turnover, ticker-by-ticker equity analysis, portfolio holding reviews, recurring risk checks, risk alerts, watchlists, valuation/thesis memos, or deep analysis of how policies, geopolitics, macro data, news, and market reactions affect stocks.
 ---
 
 # Stock Investment Research Harness
@@ -24,6 +24,7 @@ Apply these as the default investor mandate unless the user says otherwise:
 - Read `references/research-methodology.md` when explaining how a new-stock thesis is produced, when building or auditing the research method, or when the user asks why a stock made the list.
 - Read `references/macro-geopolitical-analysis.md` when the task requires current international news, geopolitical events, macro policy, war/conflict, sanctions, tariffs, elections, supply-chain disruption, commodity shocks, FX/rates moves, cross-asset risk analysis, or deep reasoning about how policies and events interact.
 - Read `references/a-share-market-strategy.md` when the task involves Mainland China A-shares, Chinese domestic policy, A-share sector rotation, China industry-chain analysis, or adapting strategy away from US-style value investing.
+- Read `references/daily-abnormal-movement-monitoring.md` when the user asks for daily A-share or Hong Kong movers, post-close abnormal stocks, stocks up/down sharply, limit-up/limit-down names, unusual volume/turnover, sector surges, or event-driven opportunities based on abnormal market behavior.
 - Read `references/research-pipeline.md` when screening for new stock ideas, building a watchlist, or writing a deep stock thesis.
 - Read `references/portfolio-monitoring.md` when the user gives held tickers, positions, cost basis, allocation, or asks for ongoing/periodic risk checks.
 - Read `references/report-templates.md` when producing the final output, alert, memo, or recurring update format.
@@ -32,14 +33,15 @@ Apply these as the default investor mandate unless the user says otherwise:
 
 1. Intake: identify market, tickers, objective, horizon, risk tolerance, constraints, and whether the task is new-idea research or existing-holding monitoring.
 2. Source: gather current public information from authoritative public sources first: company filings, investor relations materials, exchange disclosures, regulators, official macro/statistical agencies, and reputable named reporting. Use weaker sources only as leads or sentiment, never as thesis proof.
-3. Normalize: separate verified facts, estimates, market expectations, and analyst interpretation.
-4. Map macro and geopolitical context when relevant: build a causal logic chain across policies, geopolitics, news, macro variables, sectors, companies, market reaction, second-order effects, and scenario risks. Do not stop at information aggregation.
-5. Form thesis: convert facts into a falsifiable investment thesis with explicit value drivers.
-6. Analyze: evaluate business quality, financials, valuation, catalysts, risks, market structure, and portfolio fit.
-7. Decide: classify as research candidate, watchlist, avoid, hold-review, trim-review, or urgent-risk-review. Avoid direct instructions like "buy now" or "sell now."
-8. Communicate: use a concise memo with evidence, confidence level, key assumptions, and what would change the view.
-9. Monitor: define triggers, update cadence, and alert thresholds for holdings or watchlist names.
-10. Iterate: when new data arrives, update the thesis instead of repeating old conclusions.
+3. Normalize: separate verified facts, estimates, market expectations, price/volume signals, and analyst interpretation.
+4. For abnormal-movement tasks, identify price, volume, turnover, limit status, sector divergence, and event triggers before selecting names for deep research.
+5. Map macro and geopolitical context when relevant: build a causal logic chain across policies, geopolitics, news, macro variables, sectors, companies, market reaction, second-order effects, and scenario risks. Do not stop at information aggregation.
+6. Form thesis: convert facts into a falsifiable investment thesis with explicit value drivers.
+7. Analyze: evaluate business quality, financials, valuation, catalysts, risks, market structure, and portfolio fit.
+8. Decide: classify as research candidate, watchlist, avoid, hold-review, trim-review, urgent-risk-review, event-confirmed opportunity, valuation repair candidate, policy/industry watchlist, momentum/crowding risk, or red-flag avoid. Avoid direct instructions like "buy now" or "sell now."
+9. Communicate: use a concise memo with evidence, confidence level, key assumptions, and what would change the view.
+10. Monitor: define triggers, update cadence, and alert thresholds for holdings or watchlist names.
+11. Iterate: when new data arrives, update the thesis instead of repeating old conclusions.
 
 ## Routing Rules
 
@@ -50,6 +52,7 @@ Apply these as the default investor mandate unless the user says otherwise:
 - If the user asks for urgent alerts, prioritize material events: earnings surprises, guidance cuts, regulatory/legal events, liquidity stress, credit downgrades, accounting issues, executive departures, major product failures, geopolitical exposure, or extreme price/volume moves.
 - If the user asks to connect international events, policies, news, stock prices, and risk points, run `macro-geopolitical-analysis.md` before final stock-level conclusions and produce a causal explanation, not a news digest.
 - If the user asks about A-shares, do not directly apply US-style value investing. Use `a-share-market-strategy.md` to analyze policy cycle, industry-chain position, market style, liquidity, governance/disclosure risk, and whether a value, dividend, cycle, policy leader, or strategic-substitution strategy fits better.
+- If the user asks for daily A-share or Hong Kong abnormal movers, post-close unusual stocks, stocks up/down 10% or more, limit-up/limit-down names, or unusual volume/turnover, run `daily-abnormal-movement-monitoring.md` first, then send selected names into `a-share-market-strategy.md`, `macro-geopolitical-analysis.md`, or `research-pipeline.md` as needed.
 
 ## Source And Freshness Discipline
 
@@ -72,6 +75,7 @@ Research stage: source intake -> quality review -> valuation and catalysts -> ri
 For investment opportunity research, return:
 
 - candidate list with ranking logic
+- abnormal trigger and verified cause when the idea comes from daily movers
 - thesis summary
 - key evidence
 - valuation view
