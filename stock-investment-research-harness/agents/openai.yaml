@@ -1,0 +1,4 @@
+interface:
+  display_name: "Stock Investment Research Harness"
+  short_description: "Research public-market stock ideas and monitor portfolio risks."
+  default_prompt: "Use $stock-investment-research-harness to analyze investable stock opportunities or monitor risk in my existing holdings."
