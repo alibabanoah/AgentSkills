@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Tech Content Research Harness"
+  short_description: "Research AI trends for creator content."
+  default_prompt: "Use $ai-tech-content-research-harness to research AI tech trends, verify sources, find strong topics, and turn them into compelling self-media content."
